@@ -2,6 +2,8 @@ package utils;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class utils {
 
@@ -17,8 +19,5 @@ public class utils {
 		driver.manage().window().maximize();
 	}
 
-	public void fechaNavegador() {
-		driver.quit();
-	}
-
+	public void fechaNavegador(WebDriver driver) { driver.quit(); }
 }

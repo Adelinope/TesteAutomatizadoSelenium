@@ -25,4 +25,7 @@ public class PageHome {
 		wait.until(ExpectedConditions.elementToBeClickable(mapsMenu.btnPesquisa));
 		driver.findElement(mapsMenu.btnPesquisa).click();
 	}
+	public void clicaBotaoRpg(WebDriver driver) throws InterruptedException{
+		driver.findElement(mapsMenu.btnRpg).click();
+	}
 }
