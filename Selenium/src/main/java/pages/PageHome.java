@@ -27,5 +27,13 @@ public class PageHome {
 	}
 	public void clicaBotaoRpg(WebDriver driver) throws InterruptedException{
 		driver.findElement(mapsMenu.btnRpg).click();
+		driver.findElement(mapsMenu.btnEscutar).click();
+	}
+	public void clicaBotaoNerdBunker(String valor, WebDriver driver) throws InterruptedException{
+		driver.findElement(mapsMenu.btnNerdBunker).click();
+		driver.findElement(mapsMenu.inputPesquisaNerd).sendKeys(valor);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.elementToBeClickable(mapsMenu.inputPesquisaNerd));
+		driver.findElement(mapsMenu.getBtnPesquisaNerd).click();
 	}
 }
