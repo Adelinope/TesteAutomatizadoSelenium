@@ -27,8 +27,8 @@ public class Teste01 {
 		driver = new ChromeDriver();
 		utils = new utils(driver);
 		pageHome = new PageHome(driver);
-		driver.get("https://jovemnerd.com.br");
 		driver.manage().window().maximize();
+		driver.get("https://jovemnerd.com.br");
 		
 	}
 
@@ -37,7 +37,6 @@ public class Teste01 {
 	 */
 	@Test
 	public void script() throws Exception {
-
 		pageHome.pesquisaAlgo("Cthulhu");
 		pageHome.acessNerdBunker("Cthulhu");
 	}

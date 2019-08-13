@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 import maps.MapsMenu;
 
@@ -9,6 +10,7 @@ public class PageHome extends BasePage {
 	public PageHome(WebDriver driver) {
 		super(driver);
 		mapsMenu = new MapsMenu();
+		PageFactory.initElements(driver, mapsMenu);
 	}
 
 	MapsMenu mapsMenu;
@@ -20,9 +22,9 @@ public class PageHome extends BasePage {
 	 * @throws Exception
 	 */
 	public void pesquisaAlgo(String valor) throws Exception {
-		clickGenerico(mapsMenu.inputPesquisa, "Campo de Pesquisar");
-		sendKeysGenerico(mapsMenu.inputPesquisa, valor, "Campo pesquisar");
-		clickGenerico(mapsMenu.inputPesquisa, "Botão pesquisar");
+		clickGenerico(mapsMenu.inputPesquisa2, "Campo de Pesquisar");
+		sendKeysGenerico(mapsMenu.inputPesquisa2, valor, "Campo pesquisar");
+		clickGenerico(mapsMenu.btnPesquisa2, "Botão pesquisar");
 	}
 
 	/**
@@ -31,8 +33,8 @@ public class PageHome extends BasePage {
 	 * @throws Exception
 	 */
 	public void acessNerdBunker(String valor) throws Exception {
-		clickGenerico(mapsMenu.btnNerdBunker, "Botão NerdBunker");
+		clickGenerico(mapsMenu.btnNerdBunker2, "Botão NerdBunker");
 		sendKeysGenerico(mapsMenu.inputPesquisaNerd, valor, "Escreve campo pesquisa Nerd");
-		clickGenerico(mapsMenu.getBtnPesquisaNerd, "Clica em Pesquisa");
+		clickGenerico(mapsMenu.getBtnPesquisaNerd2, "Clica em Pesquisa");
 	}
 }
