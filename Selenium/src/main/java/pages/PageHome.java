@@ -1,39 +1,38 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import maps.MapsMenu;
-import utils.utils;
 
-public class PageHome {
-	MapsMenu mapsMenu = new MapsMenu();
+public class PageHome extends BasePage {
+
+	public PageHome(WebDriver driver) {
+		super(driver);
+		mapsMenu = new MapsMenu();
+	}
+
+	MapsMenu mapsMenu;
 
 	/**
 	 * pesquisa no campo na barra superior
 	 * 
 	 * @param valor
-	 * @throws InterruptedException
+	 * @throws Exception
 	 */
-	public void pesquisaAlgo(String valor, WebDriver driver) throws InterruptedException {
-		driver.findElement(mapsMenu.inputPesquisa).click();
-		driver.findElement(mapsMenu.inputPesquisa).sendKeys(valor);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.elementToBeClickable(mapsMenu.btnPesquisa));
-		driver.findElement(mapsMenu.btnPesquisa).click();
+	public void pesquisaAlgo(String valor) throws Exception {
+		clickGenerico(mapsMenu.inputPesquisa, "Campo de Pesquisar");
+		sendKeysGenerico(mapsMenu.inputPesquisa, valor, "Campo pesquisar");
+		clickGenerico(mapsMenu.inputPesquisa, "Botão pesquisar");
 	}
-	public void clicaBotaoRpg(WebDriver driver) throws InterruptedException{
-		driver.findElement(mapsMenu.btnRpg).click();
-		driver.findElement(mapsMenu.btnEscutar).click();
-	}
-	public void clicaBotaoNerdBunker(String valor, WebDriver driver) throws InterruptedException{
-		driver.findElement(mapsMenu.btnNerdBunker).click();
-		driver.findElement(mapsMenu.inputPesquisaNerd).sendKeys(valor);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.elementToBeClickable(mapsMenu.inputPesquisaNerd));
-		driver.findElement(mapsMenu.getBtnPesquisaNerd).click();
+
+	/**
+	 * 
+	 * @param valor
+	 * @throws Exception
+	 */
+	public void acessNerdBunker(String valor) throws Exception {
+		clickGenerico(mapsMenu.btnNerdBunker, "Botão NerdBunker");
+		sendKeysGenerico(mapsMenu.inputPesquisaNerd, valor, "Escreve campo pesquisa Nerd");
+		clickGenerico(mapsMenu.getBtnPesquisaNerd, "Clica em Pesquisa");
 	}
 }

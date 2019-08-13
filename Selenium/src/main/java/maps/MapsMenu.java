@@ -1,11 +1,15 @@
 package maps;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 
 public class MapsMenu {
 	public MapsMenu() {
 		// TODO Auto-generated constructor stub
 	}
+
+	@FindBy(how = How.ID, using = "main-navigation-search-input")
 
 	public By inputPesquisa = new By.ById("main-navigation-search-input");
 	public By btnPesquisa = new By.ByXPath("//button[@class='main-navigation-search-form__submit-button']");

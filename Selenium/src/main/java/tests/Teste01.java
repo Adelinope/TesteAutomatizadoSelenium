@@ -1,31 +1,53 @@
+/**
+ * Classe de teste 01
+ * 
+ */
 package tests;
 
-import maps.MapsMenu;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
 import pages.PageHome;
 import utils.utils;
 
 public class Teste01 {
+	PageHome pageHome;
+	utils utils;
+	WebDriver driver;
 
-	public static void main(String[] args) throws InterruptedException {
-		MapsMenu mapsMenu = new MapsMenu();
-		PageHome pageHome = new PageHome();
-		utils utils = new utils();
-		// TODO Auto-generated method stub
-		utils.inicia("https://jovemnerd.com.br");
-		pageHome.pesquisaAlgo("Cthulhu", utils.driver);
-		pageHome.clicaBotaoRpg(utils.driver);
-		utils.ScrollPage(new By.ByXPath("//div[@class='entry-header-actions__play']/a[@href='/rpg/cthulhu']"));
-		utils.MethodBy(new By.ByXPath("//div[@class='entry-header-actions__play']/a[@href='/rpg/cthulhu']"));
+	/*
+	 * Roda antes do teste
+	 */
+	@Before
+	public void antes() {
+		System.setProperty("webdriver.chrome.driver", "driver\\chromedriver.exe");
+		driver = new ChromeDriver();
+		utils = new utils(driver);
+		pageHome = new PageHome(driver);
+		driver.get("https://jovemnerd.com.br");
+		driver.manage().window().maximize();
+		
+	}
 
-		pageHome.clicaBotaoNerdBunker("Star War",utils.driver);
+	/*
+	 * Teste
+	 */
+	@Test
+	public void script() throws Exception {
 
+		pageHome.pesquisaAlgo("Cthulhu");
+		pageHome.acessNerdBunker("Cthulhu");
+	}
 
+	/*
+	 * Roda após o teste
+	 */
+	@After
+	public void apos() {
+		driver.close();
+		driver.quit();
 	}
 }
-
-		/*WebDriverWait wait = new WebDriverWait(utils.driver, 10);
-		wait.until(ExpectedConditions.textToBe(new By.ByXPath("//span[@class='brand-color']"),"Cthulhu"));
-		 */
