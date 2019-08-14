@@ -23,13 +23,12 @@ public class Teste01 {
 	 */
 	@Before
 	public void antes() {
-		System.setProperty("webdriver.chrome.driver", "driver\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Gideo\\IdeaProjects\\terabyte-teste\\driver\\chromedriver.exe");
 		driver = new ChromeDriver();
 		utils = new utils(driver);
 		pageHome = new PageHome(driver);
-		driver.get("https://jovemnerd.com.br");
 		driver.manage().window().maximize();
-		
+		driver.get("https://www.terabyteshop.com.br");
 	}
 
 	/*
@@ -37,13 +36,14 @@ public class Teste01 {
 	 */
 	@Test
 	public void script() throws Exception {
-
-		pageHome.pesquisaAlgo("Cthulhu");
-		pageHome.acessNerdBunker("Cthulhu");
+		pageHome.clickNotification();
+		pageHome.moveToElementOlaGamer();
+		pageHome.clickMyAccount();
+		pageHome.signIn("email","senha");
 	}
 
 	/*
-	 * Roda após o teste
+	 * Roda apï¿½s o teste
 	 */
 	@After
 	public void apos() {

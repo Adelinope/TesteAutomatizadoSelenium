@@ -1,6 +1,10 @@
 package pages;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 
 import maps.MapsMenu;
 
@@ -9,10 +13,36 @@ public class PageHome extends BasePage {
 	public PageHome(WebDriver driver) {
 		super(driver);
 		mapsMenu = new MapsMenu();
+		PageFactory.initElements(driver, mapsMenu);
 	}
-
 	MapsMenu mapsMenu;
-
+	//Metodo para imprimir o nome da variavel
+	  private void AccessFieldsUsingReflection(Object obj){
+	      Field[] fields = obj.getClass().getDeclaredFields();
+	      for(int i = 0; i < fields.length ; i++){
+	         String fieldName = fields[i].getName();
+	         Object fieldType = fields[i].getGenericType();
+	  
+	         System.out.println("Field(variable) name: " + fieldName);
+	         System.out.println("Generic Type: " + fieldType);
+	   
+	         /* Set<E>, List<E> and Map<K,V> are ParameterizedType */
+	         if(fieldType instanceof ParameterizedType){
+	           /**
+	            * This will give you Actual Type of Set<E>, List<E> and Map<K,V>.
+	            * Example:
+	            * List<String> -> String is ActualType
+	            * Set<Integer> -> Integer is ActualType
+	            * Map<String, Long> -> String, Long is ActualType
+	            */
+	            System.out.println("Actual Type:");
+	            for(Object objActualType : ((ParameterizedType) fieldType).getActualTypeArguments()){
+	                 System.out.println("-- "+objActualType);
+	            }
+	         }
+	         System.out.println("+++++++++++++++++++++++++++++++");
+	      }
+	   }
 	/**
 	 * pesquisa no campo na barra superior
 	 * 
@@ -20,19 +50,36 @@ public class PageHome extends BasePage {
 	 * @throws Exception
 	 */
 	public void pesquisaAlgo(String valor) throws Exception {
-		clickGenerico(mapsMenu.inputPesquisa, "Campo de Pesquisar");
-		sendKeysGenerico(mapsMenu.inputPesquisa, valor, "Campo pesquisar");
-		clickGenerico(mapsMenu.inputPesquisa, "Bot�o pesquisar");
+		clickGenerico(mapsMenu.inputPesquisa2, "Campo de Pesquisar");
+		AccessFieldsUsingReflection(mapsMenu.inputPesquisa2);
+		sendKeysGenerico(mapsMenu.inputPesquisa2, valor, "Campo pesquisar");
+		clickGenerico(mapsMenu.btnPesquisa2, "Botão pesquisar");
 	}
-
 	/**
 	 * 
 	 * @param valor
 	 * @throws Exception
 	 */
 	public void acessNerdBunker(String valor) throws Exception {
-		clickGenerico(mapsMenu.btnNerdBunker, "Bot�o NerdBunker");
+		clickGenerico(mapsMenu.btnNerdBunker2, "Botão NerdBunker");
 		sendKeysGenerico(mapsMenu.inputPesquisaNerd, valor, "Escreve campo pesquisa Nerd");
-		clickGenerico(mapsMenu.getBtnPesquisaNerd, "Clica em Pesquisa");
+		clickGenerico(mapsMenu.getBtnPesquisaNerd2, "Clica em Pesquisa");
+	}
+
+    public void clickNotification() throws Exception{
+        waitElement(mapsMenu.btnNotificacao1,"Botão notificação 1");
+    }
+
+    public void clickMyAccount() throws Exception {
+        moveToElementOlaGamer();
+        clickGenerico(mapsMenu.btnMinhaConta, "Botão minha conta");
+    }
+
+    public void signIn(String email, String senha) throws Exception{
+		clickGenerico(mapsMenu.inputLoginEmail,"Campo de email");
+		sendKeysGenerico(mapsMenu.inputLoginEmail,email,"Escreve campo email");
+		clickGenerico(mapsMenu.inputLoginSenha,"Campo de senha");
+		sendKeysGenerico(mapsMenu.inputLoginSenha,senha,"Escreve campo senha");
+		clickGenerico(mapsMenu.btnLogin,"Clica em login");
 	}
 }
