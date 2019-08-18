@@ -23,7 +23,7 @@ public class Teste01 {
 	 */
 	@Before
 	public void antes() {
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\Gideo\\IdeaProjects\\terabyte-teste\\driver\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "driver\\chromedriver.exe");
 		driver = new ChromeDriver();
 		utils = new utils(driver);
 		pageHome = new PageHome(driver);
@@ -37,9 +37,11 @@ public class Teste01 {
 	@Test
 	public void script() throws Exception {
 		pageHome.clickNotification();
-		pageHome.moveToElementOlaGamer();
-		pageHome.clickMyAccount();
-		pageHome.signIn("email","senha");
+		pageHome.imprimeValor();
+		// pageHome.moveToElementOlaGamer();
+
+		// pageHome.clickMyAccount();
+		// pageHome.signIn("email","senha");
 	}
 
 	/*

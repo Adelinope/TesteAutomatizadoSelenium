@@ -1,12 +1,16 @@
 package maps;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
 public class MapsMenu {
-	public MapsMenu() {
-		// TODO Auto-generated constructor stub
+	WebDriver driver;
+
+	public MapsMenu(WebDriver driver) {
+		this.driver = driver;
 	}
 
 	@FindBy(how = How.ID, using = "main-navigation-search-input")
@@ -23,7 +27,7 @@ public class MapsMenu {
 	@FindBy(how = How.XPATH, using = "//label[@class='filter-search__input']/input")
 	public WebElement inputPesquisaNerd;
 
-	//Terabyte Maps
+	// Terabyte Maps
 	@FindBy(how = How.XPATH, using = "//input[@id='isearch']")
 	public WebElement inputPesquisaMain;
 
@@ -44,4 +48,11 @@ public class MapsMenu {
 
 	@FindBy(how = How.XPATH, using = "//div[@class='col-xs-12 col-md-12 nopadding']/button")
 	public WebElement btnLogin;
+
+	@FindBy(how = How.XPATH, using = "//a[@class='wtxaccountlink']")
+	public WebElement campoGideone;
+
+	public By elemendoPropagandaDinamico(String elemento) {
+		return By.xpath("//strong[contains(text(),'" + elemento + "')]");
+	}
 }

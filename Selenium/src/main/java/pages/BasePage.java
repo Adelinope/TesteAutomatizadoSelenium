@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -35,17 +34,18 @@ public class BasePage {
 		}
 	}
 
-	public void waitElement(WebElement element, String nameElement) throws Exception{
-		if (wait.until(ExpectedConditions.visibilityOf(element)) != null){
-			element.click();
-			System.out.println("Clicou no elemento: " + nameElement);
-		}else {
-			throw new Exception("Erro ao clicar em: " + nameElement);
-		}
-	}
-	public void moveToElementOlaGamer(){
+	/**
+	 * Metodo para mover para qualquer elemento
+	 * 
+	 * @param elemento
+	 */
+	public void moveToElement(WebElement elemento) {
 		Actions actions = new Actions(driver);
-		actions.moveToElement(driver.findElement(new By.ByXPath("//a[@class='wtxaccountlink']")));
+		actions.moveToElement(elemento);
 		actions.perform();
+	}
+
+	public void imprimeValor(WebElement elemento) {
+		System.out.println(elemento.getText().toString());
 	}
 }
