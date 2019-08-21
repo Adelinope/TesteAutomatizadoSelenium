@@ -4,12 +4,17 @@ import static org.junit.Assert.assertEquals;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 
 import maps.MapsMenu;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PageHome extends BasePage {
 
@@ -104,5 +109,12 @@ public class PageHome extends BasePage {
 		System.out.println(valor);
 		assertEquals("ESCOLHA SEU PC batata", valor);
 		System.out.println();
+	}
+
+	public void moveToGpuPage() throws Exception {
+		jsClick(mapsMenu.dbDepartamentos,"Departamentos");
+		moveToElement(mapsMenu.btnHardware);
+		moveToElement(mapsMenu.btnPlacaDeVideo);
+		jsClick(mapsMenu.btnVerTodosGpu,"Botao ver todos");
 	}
 }

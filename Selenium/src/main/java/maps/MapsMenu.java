@@ -55,4 +55,22 @@ public class MapsMenu {
 	public By elemendoPropagandaDinamico(String elemento) {
 		return By.xpath("//strong[contains(text(),'" + elemento + "')]");
 	}
+
+	@FindBy(how = How.XPATH, using = "//div[@class='col-xs-12 col-sm-3 col-md-3 col-lg-3']")
+	public WebElement dbDepartamentos;
+
+	@FindBy(how = How.XPATH, using = "(//a[@title='Hardware'])[1]")
+	public WebElement btnHardware;
+
+	@FindBy(how = How.XPATH, using = "//a[@title='Placa de Vídeo']")
+	public WebElement btnPlacaDeVideo;
+
+	@FindBy(how = How.XPATH, using = "(//a[contains(text(), \"Ver Todos\")])[2]")
+	public WebElement btnVerTodosGpu;
+
+	@FindBy(how = How.ID, using = "pdmore")
+	public WebElement btnVerMaisProdutos;
+
+	@FindBy(how = How.XPATH, using = "(//a[@title='Placa de Vídeo Gigabyte GeForce GTX 1050 Ti D5, 4GB GDDR5, 128Bit, GV-N105TD5-4GD'])[2]")
+	public WebElement btnCompra1;
 }

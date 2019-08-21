@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import pages.PageGpu;
 import pages.PageHome;
 import utils.utils;
 
@@ -17,16 +18,18 @@ public class Teste01 {
 	PageHome pageHome;
 	utils utils;
 	WebDriver driver;
+	PageGpu pageGpu;
 
 	/*
 	 * Roda antes do teste
 	 */
 	@Before
 	public void antes() {
-		System.setProperty("webdriver.chrome.driver", "driver\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","driver\\chromedriver.exe");
 		driver = new ChromeDriver();
 		utils = new utils(driver);
 		pageHome = new PageHome(driver);
+		pageGpu = new PageGpu(driver);
 		driver.manage().window().maximize();
 		driver.get("https://www.terabyteshop.com.br");
 	}
@@ -37,7 +40,10 @@ public class Teste01 {
 	@Test
 	public void script() throws Exception {
 		pageHome.clickNotification();
-		pageHome.imprimeValor();
+		pageHome.moveToGpuPage();
+		pageGpu.findProdutos();
+		//pageHome.imprimeValor();
+
 		// pageHome.moveToElementOlaGamer();
 
 		// pageHome.clickMyAccount();
