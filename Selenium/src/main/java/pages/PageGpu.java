@@ -15,5 +15,4 @@ public class PageGpu extends BasePage {
     public void findProdutos(){
         waitElementToClick(mapsMenu.btnCompra1, mapsMenu.btnVerMaisProdutos);
     }
-
 }

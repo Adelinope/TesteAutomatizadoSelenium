@@ -64,7 +64,6 @@ public class PageHome extends BasePage {
 		sendKeysGenerico(mapsMenu.inputPesquisa2, valor, "Campo pesquisar");
 		clickGenerico(mapsMenu.btnPesquisa2, "Botão pesquisar");
 	}
-
 	/**
 	 * 
 	 * @param valor

@@ -25,7 +25,7 @@ public class Teste01 {
 	 */
 	@Before
 	public void antes() {
-		System.setProperty("webdriver.chrome.driver","driver\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Gideo\\IdeaProjects\\TesteAutomatizadoSelenium\\Selenium\\driver\\chromedriver.exe");
 		driver = new ChromeDriver();
 		utils = new utils(driver);
 		pageHome = new PageHome(driver);
