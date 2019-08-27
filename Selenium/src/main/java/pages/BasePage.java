@@ -57,17 +57,23 @@ public class BasePage {
 		js.executeScript("arguments[0].click();",element);
 		System.out.println("Clicou no elemento: " + nameElement);
 	}
-
-	public void waitElementToClick(WebElement element1, WebElement element2){
-		while (wait.until(ExpectedConditions.invisibilityOf(element1))){
-			if (driver.findElement(By.xpath("(//a[@title='Placa de Vídeo Gigabyte GeForce GTX 1050 Ti D5, 4GB GDDR5, 128Bit, GV-N105TD5-4GD'])[2]")).isDisplayed()){
-				jsClick(element1,"Clicou em produto");
-			}else {
-				JavascriptExecutor js = (JavascriptExecutor) driver;
-				js.executeScript("arguments[0].scrollIntoView();", element2);
-				js.executeScript("arguments[0].click();",element2);
+	
+	public boolean isPresent(WebElement elemento) {
+		try {
+			if ( elemento.isDisplayed()) {
+				System.out.println("Elemento encontrado");
+				return true;
 			}
+		}catch(Exception e) {
+			System.out.println("Element is not present");
 		}
+		return false;
+	}
+	
+	public void scrollElement(WebElement elemento) throws InterruptedException {
+		JavascriptExecutor je = ((JavascriptExecutor)driver);
+		je.executeScript("arguments[0].scrollIntoViewIfNeeded(true);", elemento);
+		Thread.sleep(4000);
 	}
 
 	public void imprimeValor(WebElement elemento) {

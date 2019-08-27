@@ -92,11 +92,11 @@ public class PageHome extends BasePage {
 		clickGenerico(mapsMenu.btnLogin, "Clica em login");
 	}
 
-	public void moveToElementOlaGamer() {
+	public void moveToElementOlaGamer() throws InterruptedException {
 		moveToElement(mapsMenu.campoGideone);
 	}
 
-	public void accessPropaganda(String nomeProduto) {
+	public void accessPropaganda(String nomeProduto) throws InterruptedException {
 		moveToElement(driver.findElement(mapsMenu.elemendoPropagandaDinamico(nomeProduto)));
 		System.out.println(driver.findElement(mapsMenu.elemendoPropagandaDinamico(nomeProduto)).getText().toString());
 		driver.findElement(mapsMenu.elemendoPropagandaDinamico(nomeProduto)).click();

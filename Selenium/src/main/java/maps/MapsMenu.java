@@ -53,7 +53,7 @@ public class MapsMenu {
 	public WebElement campoGideone;
 
 	public By elemendoPropagandaDinamico(String elemento) {
-		return By.xpath("//strong[contains(text(),'" + elemento + "')]");
+		return By.xpath("//strong[contains(text(),'" + elemento + "')]/../..");
 	}
 
 	@FindBy(how = How.XPATH, using = "//div[@class='col-xs-12 col-sm-3 col-md-3 col-lg-3']")
@@ -73,4 +73,8 @@ public class MapsMenu {
 
 	@FindBy(how = How.XPATH, using = "(//a[@title='Placa de Vídeo Gigabyte GeForce GTX 1050 Ti D5, 4GB GDDR5, 128Bit, GV-N105TD5-4GD'])[2]")
 	public WebElement btnCompra1;
+	
+	@FindBy(how = How.XPATH, using = "//a[@id='pdmore']")
+	public WebElement carregarProdutos;
+	
 }

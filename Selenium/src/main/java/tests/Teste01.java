@@ -25,7 +25,7 @@ public class Teste01 {
 	 */
 	@Before
 	public void antes() {
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\Gideo\\IdeaProjects\\TesteAutomatizadoSelenium\\Selenium\\driver\\chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "driver\\chromedriver.exe");
 		driver = new ChromeDriver();
 		utils = new utils(driver);
 		pageHome = new PageHome(driver);
@@ -41,17 +41,11 @@ public class Teste01 {
 	public void script() throws Exception {
 		pageHome.clickNotification();
 		pageHome.moveToGpuPage();
-		pageGpu.findProdutos();
-		//pageHome.imprimeValor();
-
-		// pageHome.moveToElementOlaGamer();
-
-		// pageHome.clickMyAccount();
-		// pageHome.signIn("email","senha");
+		pageGpu.findProdutos("Placa de Vídeo Asus GeForce GTX 1650 Rog Strix Gaming, 4GB GDDR5");
 	}
 
 	/*
-	 * Roda apï¿½s o teste
+	 * Roda apos o teste
 	 */
 	@After
 	public void apos() {
