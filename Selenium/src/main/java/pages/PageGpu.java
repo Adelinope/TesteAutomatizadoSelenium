@@ -1,7 +1,11 @@
 package pages;
 
+import maps.MapsGpuPage;
+import maps.MapsHome;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import maps.MapsMenu;
@@ -11,24 +15,25 @@ public class PageGpu extends BasePage {
 
 	public PageGpu(WebDriver driver) {
 		super(driver);
-		mapsMenu = new MapsMenu(driver);
-		PageFactory.initElements(driver, mapsMenu);
+		mapsGpuPage = new MapsGpuPage(driver);
 		wait = new WebDriverWait(driver, 10);
+		PageFactory.initElements(driver, mapsGpuPage);
 	}
 
-	MapsMenu mapsMenu;
+	MapsGpuPage mapsGpuPage;
 
 	public void findProdutos(String produto) throws InterruptedException {
-		while (!isPresent(mapsMenu.carregarProdutos)|| isPresent(driver.findElement(mapsMenu.elemendoPropagandaDinamico(produto)))) {
-			if (isPresent(driver.findElement(mapsMenu.elemendoPropagandaDinamico(produto)))) {	
-				scrollElement(driver.findElement(mapsMenu.elemendoPropagandaDinamico(produto)));
-				jsClick(driver.findElement(mapsMenu.elemendoPropagandaDinamico(produto)), produto);
+		Thread.sleep(5000);
+		while (isPresent(mapsGpuPage.carregarProdutos, "Botao carrega produtos")|| !isPresent(mapsGpuPage.btnCompra1, "Botao compra")) {
+			if (isPresent(mapsGpuPage.btnCompra1, "Botao compra")) {
+				scrollElement(mapsGpuPage.btnCompra1);
+				jsClick(mapsGpuPage.btnCompra1, produto);
 				break;
 			} else {
-				scrollElement(mapsMenu.carregarProdutos);
-				mapsMenu.carregarProdutos.click();
+				scrollElement(mapsGpuPage.carregarProdutos);
+				mapsGpuPage.carregarProdutos.click();
 			}
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		}
 	}
 }

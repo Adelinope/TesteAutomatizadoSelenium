@@ -6,6 +6,9 @@ import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.util.concurrent.TimeUnit;
 
+import maps.MapsGpuPage;
+import maps.MapsHome;
+import maps.MapsLogin;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -20,10 +23,14 @@ public class PageHome extends BasePage {
 
 	public PageHome(WebDriver driver) {
 		super(driver);
+		mapsLogin = new MapsLogin(driver);
+		mapsHome = new MapsHome(driver);
 		mapsMenu = new MapsMenu(driver);
-		PageFactory.initElements(driver, mapsMenu);
+		PageFactory.initElements(driver, mapsHome);
 	}
 
+	MapsLogin mapsLogin;
+	MapsHome mapsHome;
 	MapsMenu mapsMenu;
 
 	// Metodo para imprimir o nome da variavel
@@ -52,48 +59,25 @@ public class PageHome extends BasePage {
 		}
 	}
 
-	/**
-	 * pesquisa no campo na barra superior
-	 * 
-	 * @param valor
-	 * @throws Exception
-	 */
-	public void pesquisaAlgo(String valor) throws Exception {
-		clickGenerico(mapsMenu.inputPesquisa2, "Campo de Pesquisar");
-		AccessFieldsUsingReflection(mapsMenu.inputPesquisa2);
-		sendKeysGenerico(mapsMenu.inputPesquisa2, valor, "Campo pesquisar");
-		clickGenerico(mapsMenu.btnPesquisa2, "Botão pesquisar");
-	}
-	/**
-	 * 
-	 * @param valor
-	 * @throws Exception
-	 */
-	public void acessNerdBunker(String valor) throws Exception {
-		clickGenerico(mapsMenu.btnNerdBunker2, "Botão NerdBunker");
-		sendKeysGenerico(mapsMenu.inputPesquisaNerd, valor, "Escreve campo pesquisa Nerd");
-		clickGenerico(mapsMenu.getBtnPesquisaNerd2, "Clica em Pesquisa");
-	}
-
 	public void clickNotification() throws Exception {
-		clickGenerico(mapsMenu.btnNotificacao1, "Botão notificação 1");
+		clickGenerico(mapsHome.btnNotificacao1, "Botão notificação 1");
 	}
 
 	public void clickMyAccount() throws Exception {
-		moveToElement(mapsMenu.campoGideone);
-		clickGenerico(mapsMenu.btnMinhaConta, "Botão minha conta");
+		moveToElement(mapsHome.campoGideone);
+		clickGenerico(mapsHome.btnMinhaConta, "Botão minha conta");
 	}
 
 	public void signIn(String email, String senha) throws Exception {
-		clickGenerico(mapsMenu.inputLoginEmail, "Campo de email");
-		sendKeysGenerico(mapsMenu.inputLoginEmail, email, "Escreve campo email");
-		clickGenerico(mapsMenu.inputLoginSenha, "Campo de senha");
-		sendKeysGenerico(mapsMenu.inputLoginSenha, senha, "Escreve campo senha");
-		clickGenerico(mapsMenu.btnLogin, "Clica em login");
+		clickGenerico(mapsLogin.inputLoginEmail, "Campo de email");
+		sendKeysGenerico(mapsLogin.inputLoginEmail, email, "Escreve campo email");
+		clickGenerico(mapsLogin.inputLoginSenha, "Campo de senha");
+		sendKeysGenerico(mapsLogin.inputLoginSenha, senha, "Escreve campo senha");
+		clickGenerico(mapsLogin.btnLogin, "Clica em login");
 	}
 
 	public void moveToElementOlaGamer() throws InterruptedException {
-		moveToElement(mapsMenu.campoGideone);
+		moveToElement(mapsHome.campoGideone);
 	}
 
 	public void accessPropaganda(String nomeProduto) throws InterruptedException {
@@ -111,9 +95,9 @@ public class PageHome extends BasePage {
 	}
 
 	public void moveToGpuPage() throws Exception {
-		jsClick(mapsMenu.dbDepartamentos,"Departamentos");
-		moveToElement(mapsMenu.btnHardware);
-		moveToElement(mapsMenu.btnPlacaDeVideo);
-		jsClick(mapsMenu.btnVerTodosGpu,"Botao ver todos");
+		jsClick(mapsHome.dbDepartamentos,"Departamentos");
+		moveToElement(mapsHome.btnHardware);
+		moveToElement(mapsHome.btnPlacaDeVideo);
+		jsClick(mapsHome.btnVerTodosGpu,"Botao ver todos");
 	}
 }

@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import pages.PageCompras;
 import pages.PageGpu;
 import pages.PageHome;
 import utils.utils;
@@ -19,7 +20,7 @@ public class Teste01 {
 	utils utils;
 	WebDriver driver;
 	PageGpu pageGpu;
-
+	PageCompras pageCompras;
 	/*
 	 * Roda antes do teste
 	 */
@@ -30,6 +31,7 @@ public class Teste01 {
 		utils = new utils(driver);
 		pageHome = new PageHome(driver);
 		pageGpu = new PageGpu(driver);
+		pageCompras = new PageCompras(driver);
 		driver.manage().window().maximize();
 		driver.get("https://www.terabyteshop.com.br");
 	}
@@ -41,7 +43,8 @@ public class Teste01 {
 	public void script() throws Exception {
 		pageHome.clickNotification();
 		pageHome.moveToGpuPage();
-		pageGpu.findProdutos("Placa de Vídeo Asus GeForce GTX 1650 Rog Strix Gaming, 4GB GDDR5");
+		pageGpu.findProdutos("Placa de VÃ­deo Gigabyte GeForce GTX 1050 Ti D5, 4GB GDDR5, 128Bit, GV-N105TD5-4GD");
+		pageCompras.calculaFrete("38320000");
 	}
 
 	/*

@@ -58,14 +58,14 @@ public class BasePage {
 		System.out.println("Clicou no elemento: " + nameElement);
 	}
 	
-	public boolean isPresent(WebElement elemento) {
+	public boolean isPresent(WebElement elemento, String nome) {
 		try {
 			if ( elemento.isDisplayed()) {
-				System.out.println("Elemento encontrado");
+				System.out.println("Elemento: " + nome + " encontrado");
 				return true;
 			}
 		}catch(Exception e) {
-			System.out.println("Element is not present");
+			System.out.println("Elemento: " + nome + " nao encontrado");
 		}
 		return false;
 	}
@@ -73,7 +73,7 @@ public class BasePage {
 	public void scrollElement(WebElement elemento) throws InterruptedException {
 		JavascriptExecutor je = ((JavascriptExecutor)driver);
 		je.executeScript("arguments[0].scrollIntoViewIfNeeded(true);", elemento);
-		Thread.sleep(4000);
+		Thread.sleep(3000);
 	}
 
 	public void imprimeValor(WebElement elemento) {
