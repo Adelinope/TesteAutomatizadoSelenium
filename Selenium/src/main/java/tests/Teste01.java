@@ -13,6 +13,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pages.PageCompras;
 import pages.PageGpu;
 import pages.PageHome;
+import pages.PageLogin;
 import utils.utils;
 
 public class Teste01 {
@@ -21,6 +22,7 @@ public class Teste01 {
 	WebDriver driver;
 	PageGpu pageGpu;
 	PageCompras pageCompras;
+	PageLogin pageLogin;
 	/*
 	 * Roda antes do teste
 	 */
@@ -32,10 +34,10 @@ public class Teste01 {
 		pageHome = new PageHome(driver);
 		pageGpu = new PageGpu(driver);
 		pageCompras = new PageCompras(driver);
+		pageLogin = new PageLogin(driver);
 		driver.manage().window().maximize();
 		driver.get("https://www.terabyteshop.com.br");
 	}
-
 	/*
 	 * Teste
 	 */
@@ -45,8 +47,9 @@ public class Teste01 {
 		pageHome.moveToGpuPage();
 		pageGpu.findProdutos("Placa de Vídeo Gigabyte GeForce GTX 1050 Ti D5, 4GB GDDR5, 128Bit, GV-N105TD5-4GD");
 		pageCompras.calculaFrete("38320000");
+		pageHome.moveToLoginPage();
+		pageLogin.signIn("email","senha");
 	}
-
 	/*
 	 * Roda apos o teste
 	 */

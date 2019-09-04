@@ -20,6 +20,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class PageHome extends BasePage {
+	MapsLogin mapsLogin;
+	MapsHome mapsHome;
+	MapsMenu mapsMenu;
 
 	public PageHome(WebDriver driver) {
 		super(driver);
@@ -28,10 +31,6 @@ public class PageHome extends BasePage {
 		mapsMenu = new MapsMenu(driver);
 		PageFactory.initElements(driver, mapsHome);
 	}
-
-	MapsLogin mapsLogin;
-	MapsHome mapsHome;
-	MapsMenu mapsMenu;
 
 	// Metodo para imprimir o nome da variavel
 	private void AccessFieldsUsingReflection(Object obj) {
@@ -59,25 +58,9 @@ public class PageHome extends BasePage {
 		}
 	}
 
+	//Ira clicar na notificacao inicial
 	public void clickNotification() throws Exception {
 		clickGenerico(mapsHome.btnNotificacao1, "Botão notificação 1");
-	}
-
-	public void clickMyAccount() throws Exception {
-		moveToElement(mapsHome.campoGideone);
-		clickGenerico(mapsHome.btnMinhaConta, "Botão minha conta");
-	}
-
-	public void signIn(String email, String senha) throws Exception {
-		clickGenerico(mapsLogin.inputLoginEmail, "Campo de email");
-		sendKeysGenerico(mapsLogin.inputLoginEmail, email, "Escreve campo email");
-		clickGenerico(mapsLogin.inputLoginSenha, "Campo de senha");
-		sendKeysGenerico(mapsLogin.inputLoginSenha, senha, "Escreve campo senha");
-		clickGenerico(mapsLogin.btnLogin, "Clica em login");
-	}
-
-	public void moveToElementOlaGamer() throws InterruptedException {
-		moveToElement(mapsHome.campoGideone);
 	}
 
 	public void accessPropaganda(String nomeProduto) throws InterruptedException {
@@ -94,10 +77,19 @@ public class PageHome extends BasePage {
 		System.out.println();
 	}
 
+	//Metodo ira mover para a pagina de login
+	public void moveToLoginPage(){
+		jsClick(mapsHome.btnHome, "Botão Home");
+		moveToElement(mapsHome.campoOlaGamer);
+		jsClick(mapsHome.btnMinhaConta, "Botao minha conta");
+	}
+
+	//Metodo ira mover para a pagina de gpus
 	public void moveToGpuPage() throws Exception {
 		jsClick(mapsHome.dbDepartamentos,"Departamentos");
 		moveToElement(mapsHome.btnHardware);
 		moveToElement(mapsHome.btnPlacaDeVideo);
 		jsClick(mapsHome.btnVerTodosGpu,"Botao ver todos");
+		Thread.sleep(5000);
 	}
 }

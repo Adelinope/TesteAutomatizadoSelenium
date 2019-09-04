@@ -12,6 +12,7 @@ import maps.MapsMenu;
 
 public class PageGpu extends BasePage {
 	WebDriverWait wait;
+	MapsGpuPage mapsGpuPage;
 
 	public PageGpu(WebDriver driver) {
 		super(driver);
@@ -20,10 +21,7 @@ public class PageGpu extends BasePage {
 		PageFactory.initElements(driver, mapsGpuPage);
 	}
 
-	MapsGpuPage mapsGpuPage;
-
 	public void findProdutos(String produto) throws InterruptedException {
-		Thread.sleep(5000);
 		while (isPresent(mapsGpuPage.carregarProdutos, "Botao carrega produtos")|| !isPresent(mapsGpuPage.btnCompra1, "Botao compra")) {
 			if (isPresent(mapsGpuPage.btnCompra1, "Botao compra")) {
 				scrollElement(mapsGpuPage.btnCompra1);

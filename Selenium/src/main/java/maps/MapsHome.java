@@ -25,7 +25,7 @@ public class MapsHome {
     public WebElement btnMinhaConta;
 
     @FindBy(how = How.XPATH, using = "//a[@class='wtxaccountlink']")
-    public WebElement campoGideone;
+    public WebElement campoOlaGamer;
 
     @FindBy(how = How.XPATH, using = "//div[@class='col-xs-12 col-sm-3 col-md-3 col-lg-3']")
     public WebElement dbDepartamentos;
@@ -38,4 +38,7 @@ public class MapsHome {
 
     @FindBy(how = How.XPATH, using = "(//a[contains(text(), \"Ver Todos\")])[2]")
     public WebElement btnVerTodosGpu;
+
+    @FindBy(how = How.XPATH, using = "//div[@class='smllogo']/a")
+    public WebElement btnHome;
 }
